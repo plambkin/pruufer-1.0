@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EnrollmentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/getEnrolls24/{token}', [EnrollmentController::class, 'getEnrolls24']);
+
+Route::get('/getEnrolls24Beta/{token}', [EnrollmentController::class, 'getEnrolls24Beta']);
+
+

@@ -47,6 +47,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        // Issue API token
+        $token = $user->createToken('api-token')->plainTextToken;
+
+
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
