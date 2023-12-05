@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -45,14 +46,26 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+
         event(new Registered($user));
 
         // Issue API token
         $token = $user->createToken('api-token')->plainTextToken;
 
+        // Let's store the token as Plain text in the User table
+
+        $user->token = $token;
+        $user->save();
+
+        Log::info("User registered with email {$user->email}. Token: $token");
+
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return view('dashboard',['token' => $token,
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'token'=>$token]);
+
     }
 }

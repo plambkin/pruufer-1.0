@@ -5,131 +5,166 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
-            </div>
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <div class="flex justify-center mb-10 mr-10 ml-10 pl-10 pr-10">
+
+
+        <div class="mb-4 mr-10">
+            <!-- Name Input -->
+            <label class="block font-medium text-sm text-gray-700" for="name"> Name</label>
+            <input type="text" id="name" name="name" value="{{ $name ?? '' }}"
+                   class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300
+                    focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
         </div>
+
+        <div class="mb-4 ml-10 mr-10">
+            <!-- API Token Input -->
+            <label class="block font-medium text-sm text-gray-700" for="api_token">API Token</label>
+            <input type="text" id="api_token" name="api_token" value="{{ $token ?? '' }}"
+                   class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
+        </div>
+
     </div>
 
-    <div class="flex w-full justify-between mb-10">
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div class="flex justify-between mb-10 mt-6 mr-10 ml-10 pl-3 pr-4">
 
-            <div>
-                <label class="block font-medium text-sm text-gray-700" for="email"> Name </label>
+        <div>
+            <label class="block font-medium text-sm text-gray-700" for="api_token">Code 1</label>
 
-                <input
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
-                    id="name" type="name" name="name" required="required" autofocus="autofocus">
-            </div>
+            <textarea id="textarea1"
+                      class="border p-2 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                rows="4" placeholder="JavaScript Code 1"> <script>document.addEventListener("DOMContentLoaded", function () {
+                        var token = "{{ $token ?? '' }}";
+                        var apiUrl = "http://www.pruuf-1.0.test/api/updatePage";
+                        $.ajax({
+                            url: apiUrl,
+                            type: "POST",
+                            headers: {
+                                "Authorization": "Bearer " + token,
+                                "Content-Type": "application/json"
+                            },
+                            data: JSON.stringify({currentUrl: window.location.href}),
+                            dataType: "json",
+                            success: console.log,
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.error('AJAX request error:', textStatus, errorThrown);
+                                console.error('Response:', jqXHR.responseText);
+                            }
+                        });
+                    });</script>
+            </textarea>
+            <button class="copy-btn bg-gray-500 text-black px-4 py-2 rounded-md focus:outline-none" data-textarea="textarea1" >Copy Text</button>
 
-            <div>
-                <label class="block font-medium text-sm text-gray-700" for="email"> Email </label>
-
-                <input
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
-                    id="email" type="email" name="email" required="required" autofocus="autofocus">
-            </div>
-
-            <div class="mt-4">
-                <label class="block font-medium text-sm text-gray-700" for="password">Password </label>
-
-                <input
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
-                    id="password" type="password" name="password" required="required" autocomplete="current-password">
-            </div>
-
-            <div class="mt-4">
-                <label class="block font-medium text-sm text-gray-700" for="password">API Token </label>
-
-                <input
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
-                    id="password" type="password" name="password" required="required" autocomplete="current-password">
-            </div>
+        </div>
 
 
 
-            <div class="flex items-center justify-end mt-4">
+        <div>
 
+            <label class="block font-medium text-sm text-gray-700" for="api_token">Code 2</label>
 
-                <button type="submit"
-                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3">
-                    Amend
-                </button>
-            </div>
+            <textarea id="textarea2"
+                      class="border p-2 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                rows="4" placeholder="JavaScript Code 2">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://www.pruuf.app/css/normalise.css">
+    <link rel="stylesheet" type="text/css" href="https://www.pruuf.app/css/pruuf.css">
+
+<div
+    class="notification-container-spec fixed top-0 left-0 ml-12 mr-12 "><img
+        src="https://uploads-ssl.webflow.com/59318798d83bff2781822428/5e0be3423f3d956e58a20e2d_Hot%20Streaks%20Icon%20(1).svg"
+        alt="Hot Streaks Icon">
+    <div class="notification-text-spec ">
+        <div><strong class="dark-bold-text-spec">
+
+                <script>
+                    // Replace 'YOUR_API_TOKEN' with your actual API token
+                    const apiToken = "{{ $token ?? '' }}";
+
+                    // Replace 'YOUR_CURRENT_URL' with the current URL or get it dynamically if needed
+                    var currentUrl = window.location.href;
+
+                    // Make the API call
+                    $.ajax({
+                        url: `/api/getEnrolls24Gamma`,
+                        type: 'GET',
+                        headers: {
+                            Authorization: `Bearer ${apiToken}`,
+                        },
+                        success: function (response) {
+                            const {number, text1, text2} = response;
+
+                            // Use the response data in your Blade template
+                            $('#numberContainer').text(number);
+                            $('#text1Container').text(text1);
+                            $('#text2Container').text(text2);
+                        },
+                        error: function (error) {
+                            console.error('Error:', error);
+
+                            // Handle errors and update UI accordingly
+                        }
+                    });
+                </script>
+
+                <span id="numberContainer"></span>
+            people </strong> enrolled in a course
+        </div>
+        <div>in the last 24 hours</div>
+        <div class="verified-container-spec"><img
+                src="https://uploads-ssl.webflow.com/59318798d83bff2781822428/5e0be3421520077020700b59_Check%20Icon%20(1).svg"
+                alt="Pulse Verified Check" class="verified-check-spec">
+            <div>Verified by Pruuf</div>
         </div>
     </div>
+</div>
 
-        <table class="w-full mt-10">
-            <thead>
-            <tr>
-                <th class="py-2 px-4 border-b">Number </th>
-                <th class="py-2 px-4 border-b">Description</th>
-                <th class="py-2 px-4 border-b">Frequency</th>
-                <th class="py-2 px-4 border-b">Code</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">12</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="12">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 1</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="People have enrolled in this course in the last">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 1</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="24 hours">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 1</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="Code goes here">
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 2</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="123">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 2</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="People have viewed this page in the last">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 2</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="Week">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 2</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="Code goes here">
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 3</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="26">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 3</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="People have purchased within the last">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 3</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="Day">
-                </td>
-                <td class="py-2 px-4 border-b">
-                    <div class="font-medium text-sm text-gray-700">Row 3</div>
-                    <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" value="Code goes here">
-                </td>
-            </tr>
 
-            </tbody>
-        </table>
+<script>
+    // You can use jQuery for any dynamic interactions
+    // For example, you can hide the notification after a few seconds
+    $(document).ready(function () {
+        setTimeout(function () {
+            $(".notification-container-spec").fadeOut(1000);
+        }, 5000); // Hides the notification after 5 seconds
+    });
+</script>
+
+            </textarea>
+
+            <button class="copy-btn bg-gray-500 text-black px-4 py-2 rounded-md focus:outline-none" data-textarea="textarea2" >Copy Text</button>
+
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.copy-btn').on('click', function () {
+                // Get the ID of the corresponding textarea
+                const textareaId = $(this).siblings('textarea').attr('id');
+
+                // Select the corresponding textarea and copy its content
+                const textarea = $('#' + textareaId);
+                textarea.select();
+                document.execCommand('copy');
+
+                // Change button style and text
+                const button = $(this);
+                button.css('background-color', 'blue').text('Copied!');
+
+                // Reset button style and text after 5 seconds
+                setTimeout(function () {
+                    button.css('background-color', 'bg-gray-500').text('Copy Text');
+                }, 2000);
+            });
+        });
+    </script>
 
 
 

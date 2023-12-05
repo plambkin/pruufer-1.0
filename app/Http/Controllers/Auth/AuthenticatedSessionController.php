@@ -8,6 +8,10 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Log;
+use Laravel\Sanctum\PersonalAccessToken;
+
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -32,8 +36,26 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // After successful authentication, retrieve the authenticated user
+        $user = Auth::user();
+
+        $token = $user->token;
+
+      //  $accessToken = $user->tokens()->latest()->first();
+
+
+        // Retrieve the user's tokens
+       // $tokens = $user->tokens;
+
+        //dd('token', $tokens);
+
+        return view('dashboard', ['name' => $user->name,
+            'token' => $token]);
+
     }
+
+
+
 
     /**
      * Destroy an authenticated session.
