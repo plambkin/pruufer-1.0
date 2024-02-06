@@ -16,23 +16,35 @@ class EnrollmentController extends Controller
 
     public function getEnrolls24($token)
     {
-        // Define a unique cache key for each token
-        $cacheKey = 'enrolls_' . $token;
+        try {
+            // Define a unique cache key for each token
+            $cacheKey = 'enrolls_' . $token;
 
-        // Get the random number from the cache for the specified token
-        $enrolls = Cache::get($cacheKey);
+            // Attempt to get the random number from the cache for the specified token
+            $enrolls = Cache::get($cacheKey);
 
-        if ($enrolls === null) {
-            // Generate a new random number between 5 and 14
-            $enrolls = mt_rand(5, 14);
+            if ($enrolls === null) {
+                // Log that no value was found in the cache and a new one will be generated
+                Log::info("No cache found for token: {$token}, generating new enrolls number.");
 
-            // Store the new random number in the cache with a 24-hour expiration
-            Cache::put($cacheKey, $enrolls, 24 * 60); // 24 hours
+                // Generate a new random number between 5 and 14
+                $enrolls = mt_rand(5, 14);
+
+                // Attempt to store the new random number in the cache with a 24-hour expiration
+                Cache::put($cacheKey, $enrolls, 24 * 60); // 24 hours
+
+                // Log the successful cache storage
+                Log::info("Successfully stored enrolls number in cache for token: {$token}.");
+            }
 
             return response()->json(['enrolls' => $enrolls]);
-        }
+        } catch (\Exception $e) {
+            // Log the exception details
+            Log::error("An error occurred while processing token: {$token}. Error: " . $e->getMessage());
 
-        return response()->json(['enrolls' => $enrolls]);
+            // Optionally, return an error response
+            return response()->json(['error' => 'An unexpected error occurred.'], 500);
+        }
     }
 
 
